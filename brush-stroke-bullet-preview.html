@@ -14,9 +14,12 @@
       padding: 0 24px;
     }
 
-    h1 { font-size: 1.1rem; font-weight: normal; color: #888; margin-bottom: 40px; letter-spacing: .04em; }
+    h1 { font-size: 1rem; font-weight: normal; color: #aaa; margin-bottom: 40px; letter-spacing: .05em; }
 
-    /* --- The actual bullet implementation --- */
+    section { margin-bottom: 52px; }
+    h2 { font-size: .72rem; font-weight: normal; color: #bbb; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 24px; }
+
+    /* ── Live list ── */
     ul.brush {
       list-style: none;
       padding: 0;
@@ -28,133 +31,104 @@
       gap: 14px;
       font-size: 1.1rem;
       line-height: 1.7;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    ul.brush li::before {
-      content: '';
-      display: inline-block;
-      width: 32px;
-      height: 14px;
+    ul.brush li img {
+      width: 36px;
+      height: auto;
       flex-shrink: 0;
-      background-image: url('brush-stroke-bullet.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
     }
 
-    /* --- Colour variants section --- */
-    .variants { margin-top: 52px; }
-    .variants h2 { font-size: .8rem; font-weight: normal; color: #aaa; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px; }
+    /* ── Colour rows ── */
+    .row { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+    .row span { font-size: .82rem; color: #999; font-family: monospace; }
+    .row img { width: 52px; height: auto; }
 
-    .swatch { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-    .swatch span { font-size: .85rem; color: #999; }
+    /* CSS filter recipes for colour variants */
+    .col-crimson { filter: brightness(0) saturate(1) invert(20%) sepia(80%) saturate(6) hue-rotate(340deg); }
+    .col-green   { filter: brightness(0) saturate(1) invert(25%) sepia(60%) saturate(5) hue-rotate(100deg); }
+    .col-violet  { filter: brightness(0) saturate(1) invert(20%) sepia(70%) saturate(5) hue-rotate(240deg); }
+    .col-gold    { filter: brightness(0) saturate(1) invert(30%) sepia(90%) saturate(4) hue-rotate(10deg); }
 
-    /* Sizes section */
-    .sizes { margin-top: 52px; }
-    .sizes h2 { font-size: .8rem; font-weight: normal; color: #aaa; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px; }
-    .size-row { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
-    .size-row span { font-size: .8rem; color: #bbb; }
+    /* ── Sizes ── */
+    .sizes .row img.sm { width: 22px; }
+    .sizes .row img.md { width: 44px; }
+    .sizes .row img.lg { width: 66px; }
+
+    /* ── On dark ── */
+    .dark-bg {
+      background: #1e1e2e;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+    .dark-bg ul.brush li { color: #f5f0e8; }
+    .dark-bg ul.brush li img { filter: invert(1) opacity(0.88); }
   </style>
 </head>
 <body>
 
-  <h1>brush-stroke-bullet.svg — preview</h1>
+  <h1>brush-stroke-bullet.svg</h1>
 
-  <!-- Live list example -->
-  <ul class="brush">
-    <li>Typography & editorial design</li>
-    <li>Illustration and hand-lettering</li>
-    <li>Motion graphics</li>
-    <li>Brand identity systems</li>
-  </ul>
+  <section>
+    <h2>Live list — light background</h2>
+    <ul class="brush">
+      <li><img src="brush-stroke-bullet.svg" alt="">Typography &amp; editorial design</li>
+      <li><img src="brush-stroke-bullet.svg" alt="">Illustration and hand-lettering</li>
+      <li><img src="brush-stroke-bullet.svg" alt="">Motion graphics</li>
+      <li><img src="brush-stroke-bullet.svg" alt="">Brand identity systems</li>
+    </ul>
+  </section>
 
-  <!-- Colour variants (inline SVG with different fill colours) -->
-  <div class="variants">
+  <section class="dark-bg">
+    <h2 style="color:#555">Live list — dark background</h2>
+    <ul class="brush">
+      <li><img src="brush-stroke-bullet.svg" alt="">Typography &amp; editorial design</li>
+      <li><img src="brush-stroke-bullet.svg" alt="">Illustration and hand-lettering</li>
+      <li><img src="brush-stroke-bullet.svg" alt="">Motion graphics</li>
+      <li><img src="brush-stroke-bullet.svg" alt="">Brand identity systems</li>
+    </ul>
+  </section>
+
+  <section class="variants">
     <h2>Colour options</h2>
 
-    <div class="swatch">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 14" width="48" height="21">
-        <path d="M 2,7 L 3,4.5 4.5,3.5 6,3 7,3.8 9,2.8 10.5,3.2 12,2.6 14,3 15.5,2.7 17,3.1 19,2.8 21,3.5 22.5,4.3 24,5.6 25.5,7 L 25,8.6 23.5,9.8 22,10.3 20,10.7 18,10 16,10.6 14,10 12,10.7 10,10 8,10.8 6,10.3 4.5,9.4 3,8.2 Z" fill="#1e1e2e" opacity="0.88"/>
-        <path d="M 5,5.5 C 8,4.5 12,4.8 16,4.5 L 21,5 22,5.8 L 21.5,6.5 C 17,6.2 12,6.5 7,6.2 L 5,6 Z" fill="#fff" opacity="0.07"/>
-        <line x1="25" y1="5.8" x2="27.5" y2="4.8" stroke="#1e1e2e" stroke-width="0.55" stroke-linecap="round" opacity="0.65"/>
-        <line x1="25.5" y1="7" x2="28" y2="6.8" stroke="#1e1e2e" stroke-width="0.45" stroke-linecap="round" opacity="0.5"/>
-        <line x1="25" y1="8.5" x2="27" y2="9.5" stroke="#1e1e2e" stroke-width="0.5" stroke-linecap="round" opacity="0.55"/>
-        <line x1="3" y1="5.2" x2="1" y2="4.5" stroke="#1e1e2e" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
-        <line x1="3" y1="8.5" x2="1" y2="9.2" stroke="#1e1e2e" stroke-width="0.45" stroke-linecap="round" opacity="0.45"/>
-      </svg>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" alt="">
       <span>#1e1e2e — charcoal (default)</span>
     </div>
-
-    <div class="swatch">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 14" width="48" height="21">
-        <path d="M 2,7 L 3,4.5 4.5,3.5 6,3 7,3.8 9,2.8 10.5,3.2 12,2.6 14,3 15.5,2.7 17,3.1 19,2.8 21,3.5 22.5,4.3 24,5.6 25.5,7 L 25,8.6 23.5,9.8 22,10.3 20,10.7 18,10 16,10.6 14,10 12,10.7 10,10 8,10.8 6,10.3 4.5,9.4 3,8.2 Z" fill="#c0392b" opacity="0.88"/>
-        <line x1="25" y1="5.8" x2="27.5" y2="4.8" stroke="#c0392b" stroke-width="0.55" stroke-linecap="round" opacity="0.65"/>
-        <line x1="25.5" y1="7" x2="28" y2="6.8" stroke="#c0392b" stroke-width="0.45" stroke-linecap="round" opacity="0.5"/>
-        <line x1="25" y1="8.5" x2="27" y2="9.5" stroke="#c0392b" stroke-width="0.5" stroke-linecap="round" opacity="0.55"/>
-        <line x1="3" y1="5.2" x2="1" y2="4.5" stroke="#c0392b" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
-        <line x1="3" y1="8.5" x2="1" y2="9.2" stroke="#c0392b" stroke-width="0.45" stroke-linecap="round" opacity="0.45"/>
-      </svg>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" class="col-crimson" alt="">
       <span>#c0392b — crimson</span>
     </div>
-
-    <div class="swatch">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 14" width="48" height="21">
-        <path d="M 2,7 L 3,4.5 4.5,3.5 6,3 7,3.8 9,2.8 10.5,3.2 12,2.6 14,3 15.5,2.7 17,3.1 19,2.8 21,3.5 22.5,4.3 24,5.6 25.5,7 L 25,8.6 23.5,9.8 22,10.3 20,10.7 18,10 16,10.6 14,10 12,10.7 10,10 8,10.8 6,10.3 4.5,9.4 3,8.2 Z" fill="#2e7d52" opacity="0.88"/>
-        <line x1="25" y1="5.8" x2="27.5" y2="4.8" stroke="#2e7d52" stroke-width="0.55" stroke-linecap="round" opacity="0.65"/>
-        <line x1="25.5" y1="7" x2="28" y2="6.8" stroke="#2e7d52" stroke-width="0.45" stroke-linecap="round" opacity="0.5"/>
-        <line x1="25" y1="8.5" x2="27" y2="9.5" stroke="#2e7d52" stroke-width="0.5" stroke-linecap="round" opacity="0.55"/>
-        <line x1="3" y1="5.2" x2="1" y2="4.5" stroke="#2e7d52" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
-        <line x1="3" y1="8.5" x2="1" y2="9.2" stroke="#2e7d52" stroke-width="0.45" stroke-linecap="round" opacity="0.45"/>
-      </svg>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" class="col-green" alt="">
       <span>#2e7d52 — forest green</span>
     </div>
-
-    <div class="swatch">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 14" width="48" height="21">
-        <path d="M 2,7 L 3,4.5 4.5,3.5 6,3 7,3.8 9,2.8 10.5,3.2 12,2.6 14,3 15.5,2.7 17,3.1 19,2.8 21,3.5 22.5,4.3 24,5.6 25.5,7 L 25,8.6 23.5,9.8 22,10.3 20,10.7 18,10 16,10.6 14,10 12,10.7 10,10 8,10.8 6,10.3 4.5,9.4 3,8.2 Z" fill="#6c4fa3" opacity="0.88"/>
-        <line x1="25" y1="5.8" x2="27.5" y2="4.8" stroke="#6c4fa3" stroke-width="0.55" stroke-linecap="round" opacity="0.65"/>
-        <line x1="25.5" y1="7" x2="28" y2="6.8" stroke="#6c4fa3" stroke-width="0.45" stroke-linecap="round" opacity="0.5"/>
-        <line x1="25" y1="8.5" x2="27" y2="9.5" stroke="#6c4fa3" stroke-width="0.5" stroke-linecap="round" opacity="0.55"/>
-        <line x1="3" y1="5.2" x2="1" y2="4.5" stroke="#6c4fa3" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
-        <line x1="3" y1="8.5" x2="1" y2="9.2" stroke="#6c4fa3" stroke-width="0.45" stroke-linecap="round" opacity="0.45"/>
-      </svg>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" class="col-violet" alt="">
       <span>#6c4fa3 — violet</span>
     </div>
-  </div>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" class="col-gold" alt="">
+      <span>#b8860b — dark gold</span>
+    </div>
+  </section>
 
-  <!-- Sizes -->
-  <div class="sizes">
+  <section class="sizes">
     <h2>Scale</h2>
-
-    <div class="size-row">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 14" width="20" height="9">
-        <path d="M 2,7 L 3,4.5 4.5,3.5 6,3 7,3.8 9,2.8 10.5,3.2 12,2.6 14,3 15.5,2.7 17,3.1 19,2.8 21,3.5 22.5,4.3 24,5.6 25.5,7 L 25,8.6 23.5,9.8 22,10.3 20,10.7 18,10 16,10.6 14,10 12,10.7 10,10 8,10.8 6,10.3 4.5,9.4 3,8.2 Z" fill="#1e1e2e" opacity="0.88"/>
-      </svg>
-      <span>20 × 9 px — small / caption text</span>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" class="sm" alt="">
+      <span>22 px — small / caption</span>
     </div>
-
-    <div class="size-row">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 14" width="32" height="14">
-        <path d="M 2,7 L 3,4.5 4.5,3.5 6,3 7,3.8 9,2.8 10.5,3.2 12,2.6 14,3 15.5,2.7 17,3.1 19,2.8 21,3.5 22.5,4.3 24,5.6 25.5,7 L 25,8.6 23.5,9.8 22,10.3 20,10.7 18,10 16,10.6 14,10 12,10.7 10,10 8,10.8 6,10.3 4.5,9.4 3,8.2 Z" fill="#1e1e2e" opacity="0.88"/>
-        <line x1="25" y1="5.8" x2="27.5" y2="4.8" stroke="#1e1e2e" stroke-width="0.55" stroke-linecap="round" opacity="0.65"/>
-        <line x1="25.5" y1="7" x2="28" y2="6.8" stroke="#1e1e2e" stroke-width="0.45" stroke-linecap="round" opacity="0.5"/>
-        <line x1="3" y1="5.2" x2="1" y2="4.5" stroke="#1e1e2e" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
-      </svg>
-      <span>32 × 14 px — default / body text</span>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" class="md" alt="">
+      <span>44 px — default / body</span>
     </div>
-
-    <div class="size-row">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 14" width="52" height="23">
-        <path d="M 2,7 L 3,4.5 4.5,3.5 6,3 7,3.8 9,2.8 10.5,3.2 12,2.6 14,3 15.5,2.7 17,3.1 19,2.8 21,3.5 22.5,4.3 24,5.6 25.5,7 L 25,8.6 23.5,9.8 22,10.3 20,10.7 18,10 16,10.6 14,10 12,10.7 10,10 8,10.8 6,10.3 4.5,9.4 3,8.2 Z" fill="#1e1e2e" opacity="0.88"/>
-        <line x1="25" y1="5.8" x2="27.5" y2="4.8" stroke="#1e1e2e" stroke-width="0.55" stroke-linecap="round" opacity="0.65"/>
-        <line x1="25.5" y1="7" x2="28" y2="6.8" stroke="#1e1e2e" stroke-width="0.45" stroke-linecap="round" opacity="0.5"/>
-        <line x1="25" y1="8.5" x2="27" y2="9.5" stroke="#1e1e2e" stroke-width="0.5" stroke-linecap="round" opacity="0.55"/>
-        <line x1="3" y1="5.2" x2="1" y2="4.5" stroke="#1e1e2e" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
-        <line x1="3" y1="8.5" x2="1" y2="9.2" stroke="#1e1e2e" stroke-width="0.45" stroke-linecap="round" opacity="0.45"/>
-      </svg>
-      <span>52 × 23 px — large / heading list</span>
+    <div class="row">
+      <img src="brush-stroke-bullet.svg" class="lg" alt="">
+      <span>66 px — large / heading list</span>
     </div>
-  </div>
+  </section>
 
 </body>
 </html>
